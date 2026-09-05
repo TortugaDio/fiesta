@@ -17,7 +17,7 @@
       --green-dark: #087235;
       --cream: #fff6df;
       --ink: #332116;
-      --shadow: 0 20px 50px rgba(48, 30, 15, .25);
+      --shadow: 0 25px 60px rgba(48, 30, 15, .28);
     }
 
     * {
@@ -43,7 +43,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center; /* Centrado vertical natural para aprovechar cualquier pantalla */
       padding: clamp(12px, 2.5vw, 32px);
       position: relative;
     }
@@ -60,18 +60,20 @@
       overflow: hidden;
     }
 
-    /* Estructura principal Responsive Adaptada (Mobile-First a Desktop) */
+    /* Estructura Principal Dinámica e Ilimitada */
     main {
       width: 100%;
-      max-width: 580px; /* Ancho perfecto en celulares y tablets compactas */
+      /* Se adapta con total libertad: toma el espacio óptimo de la pantalla sin encogerse de más */
+      max-width: min(94vw, 680px, calc(100vh * 0.52)); 
       margin: 0 auto;
       position: relative;
       z-index: 2;
     }
 
+    /* En pantallas grandes (PC, Laptops y TVs) permitimos que la tarjeta crezca generosamente para apreciar todo el arte */
     @media (min-width: 768px) {
       main {
-        max-width: 660px; /* Escritorio: excelente tamaño para apreciar cada detalle de la invitación */
+        max-width: min(85vw, 760px);
       }
     }
 
@@ -79,7 +81,7 @@
       overflow: hidden;
       background: var(--cream);
       border: 4px solid rgba(255, 255, 255, .95);
-      border-radius: clamp(20px, 4vw, 32px);
+      border-radius: clamp(18px, 3.5vw, 32px);
       box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
@@ -91,12 +93,14 @@
       height: auto;
       object-fit: contain;
       background: var(--cream);
+      /* Mantiene su tamaño real original sin restricciones artificiales previas */
+      max-height: none; 
     }
 
     .actions {
       position: relative;
       isolation: isolate;
-      padding: clamp(20px, 4vw, 32px);
+      padding: clamp(16px, 3.5vw, 32px);
       text-align: center;
       background:
         radial-gradient(circle at 8% 20%, rgba(255, 205, 45, .32) 0 5px, transparent 6px),
@@ -109,10 +113,10 @@
     .actions::after {
       content: "✿";
       position: absolute;
-      top: 18px;
+      top: 16px;
       z-index: -1;
       color: #f4b616;
-      font-size: 1.5rem;
+      font-size: 1.35rem;
     }
 
     .actions::before { left: 20px; }
@@ -121,7 +125,7 @@
     .eyebrow {
       margin: 0 0 4px;
       color: var(--red-dark);
-      font-size: clamp(0.85rem, 2vw, 1rem);
+      font-size: clamp(0.85rem, 1.8vw, 1rem);
       font-weight: 800;
       letter-spacing: .08em;
       text-transform: uppercase;
@@ -130,39 +134,46 @@
     h1 {
       margin: 0 0 8px;
       color: var(--blue-dark);
-      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
       line-height: 1.1;
     }
 
     .intro {
-      max-width: 32rem;
-      margin: 0 auto 20px;
+      max-width: 34rem;
+      margin: 0 auto 18px;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: clamp(0.95rem, 1.8vw, 1.05rem);
-      line-height: 1.5;
+      font-size: clamp(0.92rem, 1.6vw, 1.05rem);
+      line-height: 1.45;
       color: var(--ink);
     }
 
     .buttons {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 14px;
+      gap: 12px;
+    }
+
+    @media (min-width: 540px) {
+      .buttons {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
     }
 
     .button {
       display: flex;
-      min-height: 56px;
+      min-height: 54px;
       align-items: center;
       justify-content: center;
       gap: 12px;
       border: 2px solid rgba(255, 255, 255, .85);
-      border-radius: 18px;
+      border-radius: 16px;
       color: #fff;
-      font-size: clamp(0.95rem, 2vw, 1.05rem);
+      font-size: clamp(0.92rem, 1.8vw, 1.05rem);
       font-weight: 900;
       line-height: 1.15;
       text-decoration: none;
-      box-shadow: 0 6px 0 rgba(47, 30, 17, .18), 0 10px 16px rgba(47, 30, 17, .12);
+      box-shadow: 0 5px 0 rgba(47, 30, 17, .18), 0 8px 14px rgba(47, 30, 17, .12);
       transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
       -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
@@ -170,7 +181,7 @@
 
     .button:active {
       transform: translateY(3px);
-      box-shadow: 0 3px 0 rgba(47, 30, 17, .18), 0 5px 10px rgba(47, 30, 17, .1);
+      box-shadow: 0 2px 0 rgba(47, 30, 17, .18), 0 4px 8px rgba(47, 30, 17, .1);
     }
 
     .button:focus-visible {
@@ -194,19 +205,62 @@
       place-items: center;
       border-radius: 50%;
       background: rgba(255, 255, 255, .22);
-      font-size: 1.25rem;
+      font-size: 1.2rem;
     }
 
     .note {
-      margin: 18px auto 0;
+      margin: 16px auto 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: clamp(0.85rem, 1.6vw, 0.92rem);
-      line-height: 1.45;
+      font-size: clamp(0.82rem, 1.5vw, 0.92rem);
+      line-height: 1.4;
       color: #654636;
     }
 
     .note strong {
       color: var(--red-dark);
+    }
+
+    /* BOTÓN FLOTANTE DINÁMICO E INTELIGENTE */
+    .floating-cta {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
+      width: min(90%, 370px);
+      z-index: 1000;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+      pointer-events: auto;
+    }
+
+    .floating-cta.hidden {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-50%) translateY(20px);
+      pointer-events: none;
+    }
+
+    .floating-whatsapp-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(180deg, #22b85d, var(--green));
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 28px;
+      font-size: 1rem;
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(8, 114, 53, 0.45);
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      animation: pulseButton 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseButton {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
     }
 
     /* Animaciones CSS de los efectos */
@@ -231,25 +285,18 @@
       will-change: transform, opacity;
     }
 
-    /* Adaptación de botones a 2 columnas en Tablets y PCs */
-    @media (min-width: 560px) {
-      .buttons {
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-      }
-    }
-
     @media (hover: hover) {
       .button:hover {
         filter: brightness(1.06) saturate(1.05);
         transform: translateY(-2px);
-        box-shadow: 0 8px 0 rgba(47, 30, 17, .18), 0 12px 20px rgba(47, 30, 17, .16);
+        box-shadow: 0 7px 0 rgba(47, 30, 17, .18), 0 10px 18px rgba(47, 30, 17, .16);
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .button {
+      .button, .floating-whatsapp-btn {
         transition: none;
+        animation: none;
       }
       #fx-container {
         display: none;
@@ -261,6 +308,19 @@
 
   <!-- Contenedor dinámico de efectos visuales -->
   <div id="fx-container"></div>
+
+  <!-- Botón flotante dinámico -->
+  <div id="floatingCta" class="floating-cta">
+    <a
+      class="floating-whatsapp-btn"
+      href="https://wa.me/51962883193?text=Hola%2C%20confirmo%20la%20asistencia%20al%20cumplea%C3%B1os%20de%20Emyr.%20El%20nombre%20del%20ni%C3%B1o%20o%20ni%C3%B1a%20asistente%20es%3A%20"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Confirmar asistencia rápida por WhatsApp"
+    >
+      <span>💬 Confirmar asistencia</span>
+    </a>
+  </div>
 
   <main>
     <article class="card" aria-label="Invitación al cumpleaños de Emyr">
@@ -277,7 +337,8 @@
         <h1 id="actions-title">¡Acompáñanos a celebrar!</h1>
         <p class="intro">Abre la ruta en tu aplicación de mapas o confirma tu asistencia directamente por WhatsApp.</p>
 
-        <div class="buttons">
+        <!-- Bloque evaluado por el motor dinámico -->
+        <div id="mainButtons" class="buttons">
           <a
             class="button button--maps"
             href="https://www.google.com/maps/search/?api=1&query=Jr.%20Estados%20Unidos%20740%2C%20Jes%C3%BAs%20Mar%C3%ADa%2C%20Lima%2C%20Per%C3%BA"
@@ -307,6 +368,49 @@
   </main>
 
   <script>
+    // --- MOTOR DINÁMICO UNIVERSAL PARA EL BOTÓN FLOTANTE ---
+    const floatingCta = document.getElementById('floatingCta');
+    const mainButtons = document.getElementById('mainButtons');
+
+    function updateFloatingButtonState() {
+      if (!floatingCta || !mainButtons) return;
+
+      const rect = mainButtons.getBoundingClientRect();
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+      // Si los botones principales caben y son visibles dentro del área de pantalla actual, ocultamos el flotante.
+      const areButtonsFullyVisible = (rect.top >= 0) && (rect.bottom <= windowHeight);
+
+      if (areButtonsFullyVisible) {
+        floatingCta.classList.add('hidden');
+      } else {
+        floatingCta.classList.remove('hidden');
+      }
+    }
+
+    if ('IntersectionObserver' in window && mainButtons && floatingCta) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            floatingCta.classList.add('hidden');
+          } else {
+            updateFloatingButtonState();
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      observer.observe(mainButtons);
+    }
+
+    window.addEventListener('resize', updateFloatingButtonState);
+    window.addEventListener('scroll', updateFloatingButtonState, { passive: true });
+    
+    // Ejecución inicial al cargar
+    updateFloatingButtonState();
+
+    // --- EFECTOS VISUALES DE CONFETI Y PARTÍCULAS ---
     const container = document.getElementById('fx-container');
     let currentIntervals = [];
 
@@ -318,7 +422,6 @@
       container.innerHTML = '';
     }
 
-    // --- DISEÑO 1: Lluvia Masiva Constante de Confeti ---
     function addEffect1() {
       const interval = setInterval(() => {
         for(let i = 0; i < 2; i++) {
@@ -342,7 +445,6 @@
       currentIntervals.push(interval);
     }
 
-    // --- DISEÑO 2: Múltiples Explosiones Cíclicas Grandes y Masivas ---
     function triggerMultipleBursts() {
       const burstCount = Math.floor(Math.random() * 2) + 2; 
       
@@ -386,7 +488,6 @@
       currentIntervals.push(interval);
     }
 
-    // --- DISEÑO 3: Lluvia Intensa de Burbujas y Destellos de Granjita ---
     function addEffect3() {
       const interval = setInterval(() => {
         for(let i = 0; i < 2; i++) {
@@ -412,12 +513,11 @@
       currentIntervals.push(interval);
     }
 
-    // Inicializar todos los efectos combinados al cargar la página
     function initAllEffects() {
       clearContainer();
       addEffect1();
       addEffect2();
-      //addEffect3();
+      addEffect3();
     }
 
     initAllEffects();
