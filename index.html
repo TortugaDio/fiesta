@@ -488,36 +488,10 @@
       currentIntervals.push(interval);
     }
 
-    function addEffect3() {
-      const interval = setInterval(() => {
-        for(let i = 0; i < 2; i++) {
-          const el = document.createElement('div');
-          el.className = 'particle';
-          
-          const size = Math.floor(Math.random() * 16) + 10;
-          el.style.width = size + 'px';
-          el.style.height = size + 'px';
-          el.style.border = '2px solid rgba(255, 255, 255, 0.9)';
-          el.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-          el.style.opacity = '0.8';
-          el.style.borderRadius = '50%';
-          el.style.left = Math.random() * 100 + 'vw';
-          
-          const duration = Math.random() * 2.5 + 2;
-          el.style.animation = `floatBubble ${duration}s ease-in-out forwards`;
-          
-          container.appendChild(el);
-          setTimeout(() => el.remove(), duration * 1000);
-        }
-      }, 150);
-      currentIntervals.push(interval);
-    }
-
     function initAllEffects() {
       clearContainer();
       addEffect1();
       addEffect2();
-      addEffect3();
     }
 
     initAllEffects();
